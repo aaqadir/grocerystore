@@ -5,9 +5,7 @@ import com.example.grocerystore.servive.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,16 +21,24 @@ public class AdminController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-
-
-
-    void removeGroceryItemUsingId(){
-
+    @PostMapping("/add")
+    public ResponseEntity<GroceryItem> addGroceryItem(@RequestBody GroceryItem groceryItem){
+        GroceryItem saveGroceryItem = adminService.addGroceryItem(groceryItem);
+        return new ResponseEntity<>(saveGroceryItem, HttpStatus.CREATED);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<GroceryItem> updateExistingGroceryItem(@RequestBody GroceryItem groceryItem,
+    @PathVariable("id") Integer groceryItemId){
+        GroceryItem updateGroceryItem = adminService.updateExistingGroceryItem(groceryItem, groceryItemId);
+        return new ResponseEntity<>(updateGroceryItem, HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteGroceryItemById(@PathVariable("id") Integer groceryItemId){
+        adminService.deleteGroceryItemById(groceryItemId);
+        return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
 
-    void updateGroceryItem(){
 
-    }
 
     void manageInventory(){
         //mark expired item as unavailable

@@ -18,4 +18,25 @@ public class AdminService {
         List<GroceryItem> groceryItemList = adminRepository.findAll();
         return groceryItemList;
     }
+
+    public GroceryItem addGroceryItem(GroceryItem groceryItem) {
+        return adminRepository.save(groceryItem);
+    }
+
+    public GroceryItem updateExistingGroceryItem(GroceryItem groceryItem, Integer groceryItemId) {
+        GroceryItem existingGroceryItem = adminRepository.findById(groceryItemId).get();
+        existingGroceryItem.setId(groceryItemId);
+        existingGroceryItem.setName(groceryItem.getName());
+        existingGroceryItem.setPrice(groceryItem.getPrice());
+//        existingGroceryItem.setPackagingDate(groceryItem.getPackagingDate());
+//        existingGroceryItem.setExpiryDate(groceryItem.getExpiryDate());
+        //GroceryItem newGroceryItemUsingID = new GroceryItem(groceryItemId, groceryItem.getName(), groceryItem.getPrice(),
+                //groceryItem.getPackagingDate(),groceryItem.getExpiryDate());
+        return adminRepository.save(existingGroceryItem);
+    }
+
+    public void deleteGroceryItemById(Integer groceryItemId) {
+        adminRepository.deleteById(groceryItemId);
+        System.out.println("deleted Grocery Item By Id");
+    }
 }

@@ -1,9 +1,17 @@
 package com.example.grocerystore.entity;
 
 
-import javax.persistence.*;
-import javax.xml.crypto.Data;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class GroceryItem {
@@ -12,11 +20,15 @@ public class GroceryItem {
     private int id;
     private String name;
     private double price;
-    private Date packagingDate;
-    private Date expiryDate;
+//    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "yyyy/MM/dd")
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    private LocalDate packagingDate;
 
-//    @OneToOne
-//    private InventoryLevel inventoryLevel;
+//    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "yyyy/MM/dd")
+//    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+//    @JsonSerialize(using = LocalDateTimeSerializer.class)
+//    private LocalDate expiryDate;
 
     public int getId() {
         return id;
@@ -42,21 +54,21 @@ public class GroceryItem {
         this.price = price;
     }
 
-    public Date getPackagingDate() {
-        return packagingDate;
-    }
-
-    public void setPackagingDate(Date packagingDate) {
-        this.packagingDate = packagingDate;
-    }
-
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
+//    public LocalDate getPackagingDate() {
+//        return packagingDate;
+//    }
+//
+//    public void setPackagingDate(LocalDate packagingDate) {
+//        this.packagingDate = packagingDate;
+//    }
+//
+//    public LocalDate getExpiryDate() {
+//        return expiryDate;
+//    }
+//
+//    public void setExpiryDate(LocalDate expiryDate) {
+//        this.expiryDate = expiryDate;
+//    }
 
     @Override
     public String toString() {
@@ -64,17 +76,17 @@ public class GroceryItem {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", packagingDate=" + packagingDate +
-                ", expiryDate=" + expiryDate +
+//                ", packagingDate=" + packagingDate +
+//                ", expiryDate=" + expiryDate +
                 '}';
     }
 
-    public GroceryItem(int id, String name, double price, Date packagingDate, Date expiryDate) {
+    public GroceryItem(int id, String name, double price, LocalDate packagingDate, LocalDate expiryDate) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.packagingDate = packagingDate;
-        this.expiryDate = expiryDate;
+//        this.packagingDate = packagingDate;
+//        this.expiryDate = expiryDate;
     }
 
     public GroceryItem() {
