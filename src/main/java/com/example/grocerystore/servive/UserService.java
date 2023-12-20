@@ -13,8 +13,13 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<GroceryItem> allGroceryItems() {
-        List<GroceryItem> groceryItemList = userRepository.findAll();
-        return groceryItemList;
+    public List<GroceryItem> getAllGroceryItems() {
+        return userRepository.findAll();
+    }
+
+    public GroceryItem getGroceryItemsById(String id) {
+        int groceryItemId = Integer.parseInt(id);
+        GroceryItem groceryItem = userRepository.findById(groceryItemId).get();
+        return groceryItem;
     }
 }

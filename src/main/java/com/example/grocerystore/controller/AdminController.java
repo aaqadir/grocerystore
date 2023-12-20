@@ -37,11 +37,4 @@ public class AdminController {
         adminService.deleteGroceryItemById(groceryItemId);
         return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
     }
-
-
-
-    void manageInventory(){
-        //mark expired item as unavailable
-        //preorder item if available count is less than required count
-    }
 }

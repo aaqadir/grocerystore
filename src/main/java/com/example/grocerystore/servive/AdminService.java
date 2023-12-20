@@ -20,6 +20,8 @@ public class AdminService {
     }
 
     public GroceryItem addGroceryItem(GroceryItem groceryItem) {
+        groceryItem.setPlaceOrder(groceryItem.getRequiredCount() > groceryItem.getAvailableCount());
+        groceryItem.setOrderQuantity(Math.max(groceryItem.getRequiredCount() - groceryItem.getAvailableCount(), 0));
         return adminRepository.save(groceryItem);
     }
 

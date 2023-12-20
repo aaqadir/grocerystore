@@ -1,17 +1,10 @@
 package com.example.grocerystore.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
 
 @Entity
 public class GroceryItem {
@@ -20,6 +13,10 @@ public class GroceryItem {
     private int id;
     private String name;
     private double price;
+    private int availableCount;
+    private int requiredCount;
+    private Boolean placeOrder;
+    private int orderQuantity;
 //    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern = "yyyy/MM/dd")
 //    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
 //    @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -70,25 +67,38 @@ public class GroceryItem {
 //        this.expiryDate = expiryDate;
 //    }
 
-    @Override
-    public String toString() {
-        return "GroceryItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-//                ", packagingDate=" + packagingDate +
-//                ", expiryDate=" + expiryDate +
-                '}';
-    }
-
-    public GroceryItem(int id, String name, double price, LocalDate packagingDate, LocalDate expiryDate) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-//        this.packagingDate = packagingDate;
-//        this.expiryDate = expiryDate;
-    }
-
     public GroceryItem() {
+    }
+
+    public int getAvailableCount() {
+        return availableCount;
+    }
+
+    public void setAvailableCount(int availableCount) {
+        this.availableCount = availableCount;
+    }
+
+    public int getRequiredCount() {
+        return requiredCount;
+    }
+
+    public void setRequiredCount(int requiredCount) {
+        this.requiredCount = requiredCount;
+    }
+
+    public Boolean getPlaceOrder() {
+        return placeOrder;
+    }
+
+    public void setPlaceOrder(Boolean placeOrder) {
+        this.placeOrder = placeOrder;
+    }
+
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+
+    public void setOrderQuantity(int orderQuantity) {
+        this.orderQuantity = orderQuantity;
     }
 }
